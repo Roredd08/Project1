@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Seller Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+    }
+  </style>
+<body>
+
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Cyber Hub</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">Home</a></li>
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+        
+        <li><a href="seller_page.html"><span class="glyphicon glyphicon-user"></span> Seller Page </a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Seller Page</h2>
+  <p>Below are your products</p>  
+  <input class="form-control" id="Input" type="text" placeholder="Search..">
+  <br>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Company</th>
+        <th>Price</th>
+
+      </tr>
+    </thead>
+    <tbody id="myTable">
+      <tr>
+        <td>1</td>
+        <td>Google Pixel 7 pro</td>
+        <td>Google</td>
+        <td>899.0 $</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Google Pixel 8 pro</td>
+        <td>Google</td>
+        <td>799.0 $</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Iphone 15</td>
+        <td>Apple</td>
+        <td>799.0 $</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Iphone 15 plus</td>
+        <td>Apple</td>
+        <td>899.0 $</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+</div>
+
+
+<div class="text-center">
+<div class="btn-group" role="group" aria-label="button grp">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#savemodal">
+  Add New Product
+</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updatemodal">
+  Update Product
+</button>
+</div>
+</div>
+
+<!-- Save Modal -->
+<div class="modal fade" id="savemodal" tabindex="-1" role="dialog" aria-labelledby="savemodalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="savemodalLabel">Add Product</h5>
+        <button type="button btn-primary" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  <!-- Modal Body-->
+  <div class="modal-body">
+  <form id="myform">
+  <div class="form-group row">
+    <label for="product_name" class="col-sm-2 col-form-label">Product Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="product_name" placeholder="Name of the product">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="company_name" class="col-sm-2 col-form-label">Company Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="company_name" placeholder="Name of the Company">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="price" class="col-sm-2 col-form-label">Price</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="price" placeholder="Price">
+    </div>
+  </div>
+
+</form>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="myFunction()">Save Product</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Update Modal -->
+
+<div class="modal fade" id="updatemodal" tabindex="-1" role="dialog" aria-labelledby="updatemodalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updatemodalLabel">Update Product</h5>
+        <button type="button btn-primary" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  <!-- Modal Body-->
+  <div class="modal-body">
+  <form id="myform_update">
+
+     <div class="form-group row">
+    <label for="id_form" class="col-sm-2 col-form-label">Enter the id</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="id_form" placeholder="Id of product">
+      <button type="button" class="btn btn-secondary" onclick="get_details()">Get Product Details</button>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="product_name_update" class="col-sm-2 col-form-label">Product Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="product_name_update" placeholder="Name of the product">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="company_name_update" class="col-sm-2 col-form-label">Company Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="company_name_update" placeholder="Name of the Company">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="price_update" class="col-sm-2 col-form-label">Price</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="price_update" placeholder="Price">
+    </div>
+  </div>
+
+</form>
+ </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="update()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+$(document).ready(function(){
+  $("#Input").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+function myFunction() {
+  var table = document.getElementById("myTable");
+  var x = document.getElementById('myTable').lastElementChild.cells[0].innerHTML;
+  var name = document.getElementById('product_name').value
+  var company = document.getElementById('company_name').value
+  var price = document.getElementById('price').value
+  var id = parseInt(x)
+  var row = table.insertRow(id);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  var cell3 = row.insertCell(2);
+  var cell4 = row.insertCell(3);
+  cell1.innerHTML = id+1;
+  cell2.innerHTML = name;
+  cell3.innerHTML = company;
+  cell4.innerHTML = price + " $";
+  document.getElementById("myform").reset();
+  $('#savemodal').modal('hide');
+}
+
+function get_details(){
+  var table = document.getElementById("myTable");
+  var x = document.getElementById('id_form').value;
+  var id = parseInt(x);
+  var name = document.getElementById("myTable").rows[id-1].cells[1].innerText;
+  var company = document.getElementById("myTable").rows[id-1].cells[2].innerText;
+  var price = document.getElementById("myTable").rows[id-1].cells[3].innerText;
+  console.log(name);
+  document.getElementById("product_name_update").value = name ;
+  document.getElementById("company_name_update").value =  company 
+  document.getElementById("price_update").value = price;
+
+
+}
+
+function update() {
+  var table = document.getElementById("myTable");
+  var x = document.getElementById('id_form').value;
+  var id = parseInt(x);
+  var name = document.getElementById('product_name_update').value
+  var company = document.getElementById('company_name_update').value
+  var price = document.getElementById('price_update').value;
+  document.getElementById("myTable").rows[id-1].cells[1].innerText = name;
+  document.getElementById("myTable").rows[id-1].cells[2].innerText = company;
+  document.getElementById("myTable").rows[id-1].cells[3].innerText = price;
+  document.getElementById("myform_update").reset();
+  $('#updatemodal').modal('hide');
+}
+
+
+</script>
+
+</body>
+</html>
